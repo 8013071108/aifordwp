@@ -1,0 +1,113 @@
+TICKET TRIAGE — T-1008
+Date: 2026-08-04
+Analyst role: DWP Service Desk
+
+======================================================================
+SUMMARY
+======================================================================
+VPN connects successfully but no internal resources are reachable
+following a Windows 11 upgrade.
+
+======================================================================
+IMPACT
+======================================================================
+- Who affected : Single user reported; if the Win11 upgrade is being
+                 rolled out in a wave, other recently upgraded remote
+                 workers may encounter the same issue (to-verify).
+- Urgency      : High — user is connected remotely but effectively
+                 locked out of all internal systems; they cannot do
+                 their job until resolved.
+- Wider risk   : If caused by a VPN client incompatibility with Windows
+                 11 or a changed network routing/DNS configuration
+                 post-upgrade, this could affect all users on the same
+                 upgrade wave (to-verify with network/VPN team).
+
+======================================================================
+KNOWN FACTS
+======================================================================
+- OS           : Windows 11 (recently upgraded — exact timing
+                 to-verify)
+- Symptom      : VPN tunnel establishes and shows as connected, but no
+                 internal resources (intranet sites, file shares,
+                 internal tools) are accessible
+- Trigger      : Issue began after Windows 11 upgrade
+- VPN client   : Unknown (to-verify — could be Microsoft Always On VPN,
+                 third-party client such as Cisco AnyConnect or
+                 similar, or a built-in IKEv2/SSTP connection)
+- Key indicator: VPN connects = tunnel/authentication is working;
+                 no resources = likely a routing, DNS, or split-
+                 tunnelling configuration problem on the client side
+
+======================================================================
+MISSING INFORMATION TO GATHER
+======================================================================
+1. What VPN client and version is in use? Has it been reinstalled or
+   updated since the Win11 upgrade? (to-verify)
+2. What internal resources specifically cannot be reached — intranet
+   URLs, file share paths, internal IP addresses, or all of the above?
+3. Can the user ping any internal IP address while the VPN is
+   connected? (confirms whether routing is the issue)
+4. Can the user resolve internal hostnames while connected (e.g. does
+   nslookup against an internal server name return a result)?
+   (confirms whether DNS is the issue)
+5. Was the VPN client automatically upgraded/reinstalled as part of
+   the Windows 11 upgrade process, or was it manually reinstalled
+   afterwards?
+6. Has the Windows 11 upgrade changed the network adapter order or
+   introduced a new virtual network adapter that may be conflicting
+   with the VPN adapter? (to-verify in Network Connections)
+7. Are there any active Windows Defender Firewall rules on the device
+   that may be blocking traffic on the VPN interface post-upgrade?
+   (to-verify)
+8. If Always On VPN (AOVPN) is used — was the device tunnel profile
+   and user tunnel profile re-deployed after the upgrade? (to-verify
+   with network team)
+9. Does the issue persist after a full reboot of the device with the
+   VPN reconnected from scratch?
+10. Are other recently Win11-upgraded remote users reporting the same
+    VPN behaviour? (to-verify with colleagues/ITSM)
+
+======================================================================
+LIKELY CATEGORY
+======================================================================
+Network / Connectivity > VPN > Post-Win11 Upgrade Routing or DNS
+Failure
+
+Sub-category (to-verify): VPN client DNS suffix search list not applied
+post-upgrade causing internal name resolution failure; or routing
+table not populated correctly on the VPN adapter after Windows 11
+network stack changes; or split-tunnelling configuration lost or
+altered during upgrade.
+
+======================================================================
+FIRST DIAGNOSTIC STEP
+======================================================================
+With the VPN connected, open Command Prompt and run the following two
+commands — note the outputs without recording internal hostnames or IP
+ranges in this ticket:
+
+1.  ipconfig /all
+    Review whether the VPN adapter has received an internal IP address
+    and whether the DNS servers listed for the VPN adapter are internal
+    DNS servers (not the user's home router or public DNS).
+
+2.  route print
+    Check whether routes for internal network ranges are present and
+    pointing to the VPN adapter interface. If the routing table shows
+    no internal routes via the VPN adapter, the client-side routing
+    configuration has not been applied correctly post-upgrade.
+
+If DNS servers are missing or wrong on the VPN adapter, the fix is
+likely a VPN client reinstall or profile re-push — escalate to the
+network team with this finding. Do not record specific internal IP
+ranges or server addresses in this ticket.
+
+======================================================================
+NOTE ON AI ASSISTANCE
+======================================================================
+This triage document was drafted with AI assistance and reviewed by the
+analyst before use. No real user data, credentials, or internal system
+details were used in its production. Diagnostic commands use standard
+Windows networking tools only; no internal addresses or credentials
+are referenced.
+======================================================================

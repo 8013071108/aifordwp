@@ -1,0 +1,15 @@
+Likely causes
+- High resource usage (CPU/RAM/disk) from background processes (updates, indexing, sync clients).
+- Endpoint protection scan or patching activity.
+- Low disk space on system drive.
+- Problematic startup applications.
+- App-specific issue (e.g., Outlook profile/add-in) rather than full device slowness.
+- Network-dependent slowdown (if only cloud apps are affected).
+
+3 questions to ask
+1. Scope: Is the whole laptop slow, or only specific apps (which ones)?
+2. Timing/change: When did it start, and was there any recent update/restart/software change?
+3. Impact pattern: Is it constant or only at login/startup/when on VPN-Wi-Fi?
+
+First diagnostic step
+- Ask the user to open Task Manager (Ctrl+Shift+Esc) during slowness and report CPU, Memory, and Disk %, plus the top process by usage. This quickly confirms whether it is system-wide resource contention or app-specific.

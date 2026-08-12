@@ -1,0 +1,99 @@
+TICKET TRIAGE — T-1004
+Date: 2026-08-04
+Analyst role: DWP Service Desk
+
+======================================================================
+SUMMARY
+======================================================================
+A company application fails to install from Company Portal with
+error code 0x87D1041C.
+
+======================================================================
+IMPACT
+======================================================================
+- Who affected : Single user reported; if the app assignment targets a
+                 group or device collection, multiple users may be
+                 affected (to-verify).
+- Urgency      : Medium — user is blocked from installing a required
+                 application; urgency depends on whether the app is
+                 business-critical for their role.
+- Wider risk   : If the Intune Management Extension (IME) or device
+                 enrolment is unhealthy, other app deployments on the
+                 same device will also fail (to-verify).
+
+======================================================================
+KNOWN FACTS
+======================================================================
+- Platform     : Company Portal (Microsoft Intune managed deployment)
+- Symptom      : Application fails to install
+- Error code   : 0x87D1041C (reported by user or visible in Company
+                 Portal)
+- Device OS    : Unknown (to-verify — Windows assumed based on context)
+- Error meaning: 0x87D1041C is associated with Intune app installation
+                 failures; commonly linked to the Intune Management
+                 Extension not being installed, not running, or the
+                 device not meeting app requirement rules (to-verify
+                 against Intune portal for this specific device/app)
+
+======================================================================
+MISSING INFORMATION TO GATHER
+======================================================================
+1. What is the name of the application the user is attempting to
+   install?
+2. What is the device make/model, serial number, and OS version
+   (including build number)?
+3. Is the device Azure AD joined, hybrid joined, or on-prem domain
+   joined?
+4. Is the Intune Management Extension (IME) installed and running on
+   the device? (check Services or Programs and Features — to-verify)
+5. When did the device last successfully sync with Intune? (visible in
+   Settings > Accounts > Access work or school > Info)
+6. Has the user successfully installed other apps from Company Portal
+   on this device, or does every app fail?
+7. Are there any requirement rules on the app assignment (OS version,
+   disk space, specific registry state) that the device might not be
+   meeting? (to-verify in Intune portal)
+8. Has the device been recently enrolled, re-enrolled, or had its
+   Intune enrolment repaired?
+9. Is there sufficient disk space on the device?
+10. Has the device been rebooted since the failed installation attempt?
+
+======================================================================
+LIKELY CATEGORY
+======================================================================
+Device Management / Intune > Application Deployment > Company Portal
+Install Failure
+
+Sub-category (to-verify): Intune Management Extension not installed or
+unhealthy; device requirement rule not met; or app assignment not
+correctly targeted to this device/user.
+
+======================================================================
+FIRST DIAGNOSTIC STEP
+======================================================================
+On the affected device, verify that the Intune Management Extension
+is present and running:
+
+1. Open Services (services.msc) and check for "Microsoft Intune
+   Management Extension" — confirm it is Running and set to Automatic.
+2. If not present, trigger an Intune sync via Settings > Accounts >
+   Access work or school > [account] > Info > Sync, then wait
+   5 minutes and recheck.
+3. In parallel, check the Intune portal (endpoint.microsoft.com) for
+   the device's app install status — the portal will show the specific
+   sub-error detail behind 0x87D1041C for this device/app combination,
+   which will indicate whether the failure is requirement-based, agent-
+   based, or a download/install error.
+
+Do not share device-specific Intune portal details (device names,
+user UPNs) outside of the ITSM ticket.
+
+======================================================================
+NOTE ON AI ASSISTANCE
+======================================================================
+This triage document was drafted with AI assistance and reviewed by the
+analyst before use. No real user data, credentials, or internal system
+details were used in its production. The error code description is
+based on general Intune documentation and must be verified against the
+actual Intune portal entry for this device.
+======================================================================

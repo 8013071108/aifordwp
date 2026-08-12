@@ -1,0 +1,97 @@
+TICKET TRIAGE — T-1005
+Date: 2026-08-04
+Analyst role: DWP Service Desk
+
+======================================================================
+SUMMARY
+======================================================================
+Teams audio is non-functional on three machines located in the same
+meeting room, affecting calls and meetings from that room.
+
+======================================================================
+IMPACT
+======================================================================
+- Who affected : Three users/machines in a single meeting room — likely
+                 impacts any staff using that room for remote meetings.
+- Urgency      : High — meeting rooms are shared resources; a full room
+                 being unable to use Teams audio blocks collaborative
+                 working and may disrupt scheduled meetings.
+- Wider risk   : If caused by a shared audio device (e.g. room speaker/
+                 mic) or a room-level network/policy change, all
+                 machines in the room will be affected simultaneously,
+                 as reported.
+
+======================================================================
+KNOWN FACTS
+======================================================================
+- Application  : Microsoft Teams
+- Symptom      : Audio completely non-functional (dead) in Teams
+- Scope        : Three machines, all in the same meeting room
+- Co-location  : All affected machines share the same physical space —
+                 strongly suggests a shared peripheral, network
+                 segment, or policy change as the root cause rather
+                 than individual machine faults
+
+======================================================================
+MISSING INFORMATION TO GATHER
+======================================================================
+1. Is audio dead only in Teams, or also in other applications (e.g.
+   Windows sound test, browser video)? (isolates Teams config vs OS/
+   hardware)
+2. Do all three machines share a common audio device — e.g. a USB
+   conference speaker/mic (such as a room speakerphone or HDMI display
+   with audio)? If so, has that device been checked/replaced?
+3. When did the issue start? Was there any recent change — Teams
+   update, Windows update, room AV equipment change, or Group Policy
+   push? (to-verify with change management)
+4. What does Teams show as the selected audio input/output device in
+   Settings > Devices? Is it showing "No device found" or a specific
+   device?
+5. Has Teams been updated recently on these machines, and if so, to
+   what version? (to-verify — Teams can auto-update)
+6. Are the machines using the new Teams (Teams 2.x) or classic Teams?
+7. Has a Teams admin policy been recently applied that could restrict
+   audio device access? (to-verify with M365 admin team)
+8. Do the machines have any pending Windows updates that could have
+   changed audio driver state?
+9. If a shared USB audio device is in use — does it appear in Device
+   Manager on the affected machines, and without any warning flags?
+10. Does audio work in Teams if a personal headset is plugged in
+    directly to one of the affected machines?
+
+======================================================================
+LIKELY CATEGORY
+======================================================================
+Collaboration Tools > Microsoft Teams > Audio / Peripheral Issue
+
+Sub-category (to-verify): Shared room audio device not recognised by
+Teams (driver, firmware, or device selection issue); or Teams audio
+device policy/settings reset by a recent update or policy push.
+
+======================================================================
+FIRST DIAGNOSTIC STEP
+======================================================================
+Test audio outside of Teams first on one of the affected machines:
+
+1. Open Windows Settings > System > Sound and use the built-in
+   "Test your speaker" function. Check that the correct output device
+   is listed and produces sound.
+2. If Windows audio works but Teams does not: open Teams > Settings >
+   Devices and verify which audio input/output/speaker Teams has
+   selected. Reset to the correct room device (or Default) and test.
+3. If Windows audio is also silent: check Device Manager for the audio
+   device — look for any warning indicators. Check whether the room's
+   shared audio peripheral (if present) is detected at all.
+
+This initial split test on one machine will determine whether the
+fault is in Teams configuration or at the OS/hardware layer, and
+guide whether all three machines need individual attention or the room
+device is the single point of failure.
+
+======================================================================
+NOTE ON AI ASSISTANCE
+======================================================================
+This triage document was drafted with AI assistance and reviewed by the
+analyst before use. No real user data, credentials, or internal system
+details were used in its production.
+======================================================================

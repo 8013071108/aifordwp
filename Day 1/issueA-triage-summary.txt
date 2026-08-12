@@ -1,0 +1,31 @@
+Summary (one line)
+User reports laptop is very slow since this morning and Outlook will not open (spinning), on a new Windows 11 machine from last week.
+
+Impact (who/how many/ business urgency)
+- Who: Single end user (to confirm)
+- How many: 1 user reported (to confirm)
+- Business urgency: Unable to use Outlook; potential impact to email/calendar access (urgency to confirm)
+
+known facts
+- Issue started: "since this morning"
+- Device: "new Win11 machine from last week"
+- Symptom 1: "laptop really slow"
+- Symptom 2: "cant open outlook it just spins"
+- Other apps: "other apps ok i think" (to confirm)
+
+Missing information to gather
+- Exact user identity, location, and contact details
+- Whether issue is still ongoing right now
+- Whether Outlook opens in Safe Mode
+- Whether Outlook Web App works
+- Any error message/code or only spinning
+- Device restart status since issue began
+- Corporate network/VPN status
+- Current CPU, memory, and disk usage at time of issue
+- Whether any Windows/Office updates installed recently
+
+likely category
+- End User Compute > Performance issue + Outlook client issue (to confirm)
+
+Suggest first diagnostic step
+- Run a quick local resource check (Task Manager CPU/RAM/Disk) while reproducing Outlook launch to confirm whether this is a device performance bottleneck or Outlook-specific hang.

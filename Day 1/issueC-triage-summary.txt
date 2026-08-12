@@ -1,0 +1,28 @@
+Summary (one line)
+Shared 3rd floor printer is unavailable; whole team affected ahead of a client meeting at 2.
+
+Impact (who/how many/ business urgency)
+- Who: Whole team affected (exact team to confirm)
+- How many: Multiple users / whole team (exact number to confirm)
+- Business urgency: High - printing needed before a client meeting at 2
+
+known facts
+- Issue: "printer gone"
+- Affected device: "the big one on 3rd floor"
+- Scope: "whole team affected"
+- Time sensitivity: "we have a client meeting at 2"
+
+Missing information to gather
+- Exact printer name/asset/queue name
+- Whether the printer is missing from devices, offline, or showing an error state
+- Exact team/location details and how many users are affected
+- Whether any other printers on the same floor/site are working
+- Whether this affects printing only or also scanning/copying
+- Any error messages shown on user devices or on the printer display
+- Whether recent changes occurred (paper jam, toner, network issue, power cycle) - to confirm
+
+likely category
+- Print service / shared network printer outage (to confirm)
+
+Suggest first diagnostic step
+- Check whether the shared printer queue/device is offline or unavailable centrally and confirm whether other users on the same floor can see or print to it, to determine if this is a single printer outage or a wider print service issue.

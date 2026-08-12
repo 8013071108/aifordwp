@@ -1,0 +1,97 @@
+TICKET TRIAGE — T-1006
+Date: 2026-08-04
+Analyst role: DWP Service Desk
+
+======================================================================
+SUMMARY
+======================================================================
+User reports general system slowness across all activity since
+upgrading to Windows 11 two days ago.
+
+======================================================================
+IMPACT
+======================================================================
+- Who affected : Single user; however if the upgrade was part of a
+                 managed wave deployment, other recently upgraded users
+                 may have the same experience (to-verify).
+- Urgency      : Medium — user is not fully blocked but productivity
+                 is significantly degraded.
+- Wider risk   : Systemic post-upgrade slowness in a cohort of devices
+                 could indicate a driver, policy, or image issue
+                 affecting the upgrade package (to-verify with endpoint
+                 team).
+
+======================================================================
+KNOWN FACTS
+======================================================================
+- OS           : Windows 11 (upgraded two days ago from — version
+                 unknown, to-verify)
+- Symptom      : General slowness across all tasks ("everything is
+                 slow") — vague; needs quantification
+- Timing       : Began after Win11 upgrade; two days have elapsed so
+                 this is not an immediate post-reboot settling issue
+- Upgrade type : In-place upgrade assumed (to-verify — could be a
+                 fresh build with profile migration)
+
+======================================================================
+MISSING INFORMATION TO GATHER
+======================================================================
+1. What was the previous OS version (e.g. Windows 10 21H2, 22H2)?
+2. Was this an in-place upgrade, a fresh device build, or a feature
+   update? (to-verify)
+3. What is the device make, model, age, and hardware spec (RAM, CPU,
+   storage type — SSD or HDD)?
+4. Does Task Manager show any process consuming consistently high CPU,
+   memory, or disk at rest? If so, which process?
+5. Is disk activity consistently at or near 100% in Task Manager?
+   (common on HDD devices post-upgrade due to Windows Search or
+   Delivery Optimisation indexing)
+6. Has the device been fully rebooted since the upgrade (not just
+   signed out)?
+7. Are all device drivers current and compatible with Windows 11?
+   Specifically graphics, storage/chipset, and network adapter drivers.
+   (to-verify in Device Manager for any warning flags)
+8. Were any new Intune or Group Policy settings applied at the same
+   time as the upgrade? (to-verify with endpoint team)
+9. Is OneDrive actively syncing large volumes of data post-migration
+   or post-upgrade, which could be consuming disk I/O?
+10. Is the slowness consistent throughout the day, or worse at login/
+    startup then improving?
+
+======================================================================
+LIKELY CATEGORY
+======================================================================
+Endpoint / Device Management > Windows 11 Upgrade > Post-Upgrade
+Performance Degradation
+
+Sub-category (to-verify): High background disk or CPU activity from
+Windows Search indexing, Delivery Optimisation, driver incompatibility,
+or OneDrive sync following upgrade; or insufficient hardware for
+Windows 11 workload.
+
+======================================================================
+FIRST DIAGNOSTIC STEP
+======================================================================
+Ask the user to open Task Manager (Ctrl + Shift + Esc) and select the
+Performance tab, then share a description (not a screenshot with asset
+names) of which resource — CPU, Memory, Disk, or Network — is shown
+at the highest utilisation while the machine feels slow.
+
+Then switch to the Processes tab, sort by the highest utilisation
+resource, and identify the top consuming process.
+
+This takes under two minutes and immediately narrows the fault to a
+specific resource and process, avoiding unnecessary remote-session
+time. If disk is at or near 100%, ask whether the drive is SSD or HDD
+(an HDD is a known performance bottleneck on Windows 11).
+
+Do NOT ask the user to share screenshots containing hostname, username,
+or IP information visible in Task Manager.
+
+======================================================================
+NOTE ON AI ASSISTANCE
+======================================================================
+This triage document was drafted with AI assistance and reviewed by the
+analyst before use. No real user data, credentials, or internal system
+details were used in its production.
+======================================================================

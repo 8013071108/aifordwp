@@ -1,0 +1,33 @@
+Summary (one line)
+User unable to connect to VDI today from home Wi-Fi; error message states "cannot connect". Service worked on Friday.
+
+Impact (who/how many/ business urgency)
+- Who: Single end user working from home (to confirm identity/role)
+- How many: 1 reported (to confirm if others affected)
+- Business urgency: User cannot access VDI, so likely unable to perform work; business urgency to confirm
+
+known facts
+- Symptom: Cannot connect to VDI
+- Error text: "cannot connect" (exact wording to confirm)
+- Last known working: Friday
+- Issue start: "today"
+- User location: At home
+- Network: Home Wi-Fi
+
+Missing information to gather
+- Exact user identity, contact details, and location
+- Full/exact error message, error code, and screenshot
+- Which VDI client/platform is in use (e.g. Citrix, VMware Horizon, AVD) - to confirm
+- Whether VPN is required and, if so, its connection status
+- Whether user can reach other corporate resources (e.g. webmail, intranet)
+- Whether the home internet is otherwise working (browsing, other sites)
+- Any recent changes: password reset, MFA re-enrolment, client update, new router
+- Device type - corporate laptop or personal device (to confirm)
+- Whether reboot of device and/or router has been attempted
+- Whether other users are reporting the same VDI issue (check for wider outage)
+
+likely category
+- Remote Access / Virtual Desktop Infrastructure (VDI) connectivity issue (to confirm)
+
+Suggest first diagnostic step
+- Check for a wider VDI/gateway outage or maintenance notice; in parallel, ask the user for the exact error message and confirm VPN (if required) is connected and that they can reach a known corporate URL from the same device.

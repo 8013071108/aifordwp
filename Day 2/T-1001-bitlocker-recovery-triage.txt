@@ -1,0 +1,98 @@
+TICKET TRIAGE — T-1001
+Date: 2026-08-04
+Analyst role: DWP Service Desk
+
+======================================================================
+SUMMARY
+======================================================================
+New Windows 11 laptop prompts for BitLocker recovery key on every boot,
+preventing normal user access.
+
+======================================================================
+IMPACT
+======================================================================
+- Who affected : Single end user (new device, likely not yet fully
+                 onboarded — business impact may escalate if this is
+                 a day-one device for a new starter or returning staff).
+- Urgency      : High — device is effectively unusable until resolved.
+- Wider risk   : If caused by a policy or image issue, other recently
+                 provisioned laptops from the same batch/build could
+                 be affected (to-verify).
+
+======================================================================
+KNOWN FACTS
+======================================================================
+- Device OS    : Windows 11 (new laptop)
+- Symptom      : BitLocker recovery key prompt appears on every boot
+                 (not just once after a change event)
+- Frequency    : Every boot — suggests the TPM measurement is failing
+                 consistently, not a one-off trigger
+
+======================================================================
+MISSING INFORMATION TO GATHER
+======================================================================
+1. Has the user ever been able to log in normally, or has this happened
+   from first boot?
+2. What is the device make/model and serial number?
+   (needed to check build batch — to-verify whether a known imaging
+   issue exists for this model)
+3. How was the device provisioned — Autopilot, manual imaging, or
+   SCCM/Intune deployment? (to-verify)
+4. Has any hardware change occurred (RAM swap, docking station, BIOS
+   update applied during setup)? — any of these can cause TPM PCR
+   measurement changes.
+5. Is Secure Boot enabled and configured correctly in BIOS/UEFI?
+   (to-verify on device)
+6. Has a BIOS/UEFI firmware update been applied automatically during
+   initial setup? (common trigger on new hardware)
+7. Is the device joined to Azure AD / Intune, on-prem AD, or hybrid?
+   (affects where the recovery key is escrowed)
+8. Where is the BitLocker recovery key stored — Azure AD portal,
+   on-prem AD, or MBAM? (to-verify with identity/endpoint team)
+9. Are other laptops from the same build batch reporting the same
+   issue? (to-verify with colleagues/ITSM)
+10. Is there an Intune/SCCM BitLocker policy that could be enforcing
+    re-encryption or conflicting with the TPM configuration?
+    (to-verify with endpoint team)
+
+======================================================================
+LIKELY CATEGORY
+======================================================================
+Endpoint / Device Management > BitLocker / Encryption > Recovery Key Loop
+
+Sub-category (to-verify): TPM PCR measurement mismatch caused by
+firmware update or Secure Boot configuration applied during provisioning.
+
+======================================================================
+FIRST DIAGNOSTIC STEP
+======================================================================
+Retrieve the BitLocker recovery key from the appropriate escrow store
+(Azure AD portal or on-prem AD/MBAM — to-verify which applies) and
+allow the user to boot into Windows.
+
+Once inside Windows, open an elevated PowerShell prompt and run:
+
+    manage-bde -status C:
+
+Review the output to confirm:
+  - Protection Status (On/Off)
+  - Lock Status
+  - Key Protectors present (TPM, TPM+PIN, Recovery Password, etc.)
+
+Also check the System Event Log and the Microsoft-Windows-BitLocker
+event log channel for entries recorded at the time of the boot prompt
+to identify the specific PCR or policy change that triggered recovery
+mode.
+
+Do NOT record or share the actual recovery key in this ticket beyond
+what is needed to unblock the user. Follow DWP data-handling policy.
+
+======================================================================
+NOTE ON AI ASSISTANCE
+======================================================================
+This triage document was drafted with AI assistance and reviewed by the
+analyst before use. No real user data, credentials, or internal system
+details were used in its production. All diagnostic steps must be
+verified against the live device and DWP endpoint baseline before
+action is taken.
+======================================================================

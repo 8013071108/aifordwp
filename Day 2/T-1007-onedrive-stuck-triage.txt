@@ -1,0 +1,113 @@
+TICKET TRIAGE — T-1007
+Date: 2026-08-04
+Analyst role: DWP Service Desk
+
+======================================================================
+SUMMARY
+======================================================================
+OneDrive has been stuck in a "processing changes" state since a
+migration, and files that were previously accessible locally are now
+missing.
+
+======================================================================
+IMPACT
+======================================================================
+- Who affected : Single user reported; if caused by a tenant or
+                 account migration affecting a team or directorate,
+                 multiple users may be in the same state (to-verify
+                 with the migration project team).
+- Urgency      : High — files reported as missing locally; there is a
+                 risk that the user perceives data loss even if files
+                 are intact in the cloud. Needs prompt resolution to
+                 prevent user attempting workarounds that could cause
+                 actual data loss.
+- Wider risk   : If this is a post-migration sync issue, other migrated
+                 users could be affected (to-verify).
+
+======================================================================
+KNOWN FACTS
+======================================================================
+- Application  : Microsoft OneDrive
+- Symptom 1   : OneDrive status shows "processing changes" and has not
+                progressed since migration
+- Symptom 2   : Files are missing from the local OneDrive folder
+- Trigger      : Issue began after a migration (type to-verify —
+                 M365 tenant migration, SharePoint migration, or
+                 OneDrive account re-link)
+- Data safety  : Files missing locally does not necessarily mean data
+                 loss — OneDrive may not have re-synced after migration;
+                 files may still exist in the cloud (to-verify)
+
+======================================================================
+MISSING INFORMATION TO GATHER
+======================================================================
+1. What type of migration occurred — M365 tenant-to-tenant, SharePoint
+   library migration, or a OneDrive account change? (to-verify with
+   migration team)
+2. When did the migration complete, and has OneDrive been restarted or
+   the device rebooted since then?
+3. Can the user access their files via OneDrive on the Web (office.com)
+   in a browser? (critical — confirms whether files exist in the cloud)
+4. What account is OneDrive signed in to on the device — is it the
+   correct post-migration account/UPN? (to-verify — UPN may have
+   changed in migration)
+5. What does the OneDrive sync status icon show in the system tray —
+   any error icon, cloud with X, or just the spinning "processing"
+   indicator?
+6. How long has the "processing changes" state been showing — has it
+   ever made any progress?
+7. How much data was in the user's OneDrive prior to migration (rough
+   estimate)? Large libraries take longer to re-index.
+8. Is there sufficient free disk space on the local drive for OneDrive
+   to sync files? (Files On-Demand may not apply if quota is exceeded)
+9. Are there any error messages if the user hovers over or clicks the
+   OneDrive system tray icon?
+10. Has the user made any changes to files locally during the "stuck"
+    period that could create sync conflicts?
+
+======================================================================
+LIKELY CATEGORY
+======================================================================
+Productivity / Storage > Microsoft OneDrive > Post-Migration Sync
+Failure / Files Not Synced Locally
+
+Sub-category (to-verify): OneDrive account not re-linked to the new
+tenant/UPN post-migration; or sync client in error state requiring
+reset; or Files On-Demand not re-populated after migration.
+
+======================================================================
+FIRST DIAGNOSTIC STEP
+======================================================================
+First, reassure the user and confirm whether the files exist in the
+cloud before any local action is taken — this rules out data loss and
+prevents panic-driven actions.
+
+1. Ask the user to open a browser and navigate to their OneDrive via
+   office.com, signing in with their current work account. Confirm
+   whether their files are visible there.
+
+2. If files ARE visible in the browser:
+   - The data is safe; the issue is a local sync client problem.
+   - Check the OneDrive signed-in account on the device matches the
+     post-migration UPN (click the OneDrive tray icon > Settings >
+     Account tab).
+   - If the account is wrong (old UPN), the client needs to be
+     unlinked and re-linked to the new account — escalate to the
+     migration team to confirm the correct procedure for this
+     migration type before making changes.
+
+3. If files are NOT visible in the browser:
+   - Escalate immediately to the migration project team; this may
+     indicate the migration did not complete successfully for this user.
+
+Do NOT attempt to reset or unlink OneDrive without first confirming
+file safety via the browser and without guidance from the migration
+team, as this could mask a genuine data loss situation.
+
+======================================================================
+NOTE ON AI ASSISTANCE
+======================================================================
+This triage document was drafted with AI assistance and reviewed by the
+analyst before use. No real user data, credentials, or internal system
+details were used in its production.
+======================================================================

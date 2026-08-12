@@ -1,0 +1,90 @@
+TICKET TRIAGE — T-1002
+Date: 2026-08-04
+Analyst role: DWP Service Desk
+
+======================================================================
+SUMMARY
+======================================================================
+Finance user is unable to open a shared mailbox following a mailbox
+migration event.
+
+======================================================================
+IMPACT
+======================================================================
+- Who affected : Single Finance user (Finance team — potentially time-
+                 sensitive if the shared mailbox handles invoices,
+                 purchase orders, or budget approvals).
+- Urgency      : High — Finance shared mailboxes often have operational
+                 deadlines; inability to access may block business
+                 processes.
+- Wider risk   : If the migration affected multiple mailboxes or was a
+                 bulk move, other Finance users or teams may be
+                 impacted (to-verify).
+
+======================================================================
+KNOWN FACTS
+======================================================================
+- User role    : Finance department user
+- Symptom      : Cannot open a specific shared mailbox
+- Trigger      : Issue began after a migration (mailbox or tenant
+                 migration — to-verify which)
+- Client       : Assumed Outlook (desktop or web — to-verify)
+
+======================================================================
+MISSING INFORMATION TO GATHER
+======================================================================
+1. What exact error message or behaviour does the user see when
+   attempting to open the shared mailbox (e.g. permission denied,
+   mailbox not found, cannot expand folder)?
+2. Is the issue in Outlook desktop, Outlook on the Web (OWA), or both?
+3. What type of migration occurred — mailbox move within Exchange,
+   cross-tenant migration, or M365 tenant-to-tenant? (to-verify with
+   migration/messaging team)
+4. When did the migration complete, and was the user's own mailbox also
+   migrated at the same time?
+5. Does the user still have the shared mailbox listed in their Outlook
+   profile, or has it disappeared entirely?
+6. Has the user tried accessing via OWA? (rules out local Outlook
+   profile/cache as the cause)
+7. Has the shared mailbox's permissions (Full Access delegation) been
+   verified post-migration in the admin portal? (to-verify)
+8. Is Outlook automapping enabled for this shared mailbox, and has it
+   been re-applied after migration? (to-verify with messaging team)
+9. Has the Outlook profile been recreated or cached credentials cleared
+   since migration?
+10. Are other Finance users experiencing the same issue with this
+    shared mailbox? (to-verify)
+
+======================================================================
+LIKELY CATEGORY
+======================================================================
+Messaging / Email > Shared Mailbox Access > Post-Migration Permission
+Loss
+
+Sub-category (to-verify): Full Access delegation not re-applied after
+migration, or automapping not propagated to new mailbox location.
+
+======================================================================
+FIRST DIAGNOSTIC STEP
+======================================================================
+Ask the user to attempt to open the shared mailbox via Outlook on the
+Web (OWA) using their own credentials.
+
+- If OWA works but Outlook desktop does not: the issue is likely a
+  stale Outlook profile or cached credentials — clear the credential
+  manager entries for the mail account and rebuild the Outlook profile.
+- If OWA also fails: the issue is server-side — escalate to the
+  messaging/M365 team to verify that Full Access permissions are
+  correctly assigned to the user on the shared mailbox in the admin
+  portal, and that the mailbox is fully provisioned post-migration.
+
+Do NOT access or request the contents of the Finance shared mailbox
+beyond what is needed to confirm access is restored.
+
+======================================================================
+NOTE ON AI ASSISTANCE
+======================================================================
+This triage document was drafted with AI assistance and reviewed by the
+analyst before use. No real user data, credentials, or internal system
+details were used in its production.
+======================================================================

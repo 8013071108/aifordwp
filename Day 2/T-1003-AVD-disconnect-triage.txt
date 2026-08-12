@@ -1,0 +1,98 @@
+TICKET TRIAGE — T-1003
+Date: 2026-08-04
+Analyst role: DWP Service Desk
+
+======================================================================
+SUMMARY
+======================================================================
+Azure Virtual Desktop (AVD) sessions disconnect after approximately
+10 minutes then automatically reconnect, disrupting user workflow.
+
+======================================================================
+IMPACT
+======================================================================
+- Who affected : Single user reported; if caused by a session host or
+                 policy setting, multiple users on the same host pool
+                 may be affected (to-verify).
+- Urgency      : Medium-High — repeated disconnections disrupt
+                 productivity and may cause data loss in unsaved work
+                 depending on application behaviour at reconnect.
+- Wider risk   : If a session host idle-timeout or network policy was
+                 recently changed, the issue could be widespread
+                 (to-verify with AVD/infrastructure team).
+
+======================================================================
+KNOWN FACTS
+======================================================================
+- Service      : Azure Virtual Desktop (AVD)
+- Symptom      : Session disconnects approximately every 10 minutes,
+                 then reconnects automatically
+- Pattern      : Consistent ~10-minute interval suggests a configured
+                 timeout or keepalive threshold rather than a random
+                 network fault
+- Client type  : Unknown (Windows App, Remote Desktop client, browser
+                 — to-verify)
+
+======================================================================
+MISSING INFORMATION TO GATHER
+======================================================================
+1. What AVD client is in use — Windows App (Microsoft Store), Remote
+   Desktop client, or web browser? What version?
+2. Is the disconnection silent (session resumes without re-auth) or
+   does it require the user to log back in?
+3. Is the ~10-minute interval consistent, or approximate?
+   (A precise 10-minute pattern strongly suggests an idle/disconnect
+   timeout policy — to-verify)
+4. What is the user doing during the session when it drops — is it
+   always during active use, or only when idle?
+5. Is the user on a corporate network (on-site), home broadband, or
+   mobile hotspot? Has this changed recently?
+6. Are other users on the same host pool or workspace experiencing the
+   same disconnections? (to-verify with AVD team)
+7. Has any change been made to AVD host pool configuration, session
+   policies, or RD Gateway settings recently? (to-verify with
+   infrastructure team)
+8. Is the client device managed (Intune/domain-joined) and are there
+   any recent Group Policy or Intune policy changes applied to it?
+   (to-verify)
+9. Are there any relevant events in the Windows Event Viewer on the
+   client at the time of disconnection (e.g. network adapter events,
+   RemoteDesktopServices channel)?
+10. Has the user tried a different network connection to rule out a
+    local network issue?
+
+======================================================================
+LIKELY CATEGORY
+======================================================================
+End User Computing > Azure Virtual Desktop > Session Stability /
+Disconnection
+
+Sub-category (to-verify): Session idle-disconnect or reconnect timeout
+configured in host pool RDP properties or session host policy, or
+network keepalive failure between client and gateway.
+
+======================================================================
+FIRST DIAGNOSTIC STEP
+======================================================================
+Check whether the ~10-minute interval aligns with a configured AVD
+session timeout:
+
+Ask the user to note the exact time of the next disconnection and
+whether they were actively using the session or idle at that point.
+
+Simultaneously, request the AVD/infrastructure team to review the
+host pool RDP session settings for idle session timeout and
+disconnected session limits — a 10-minute value in either setting
+would confirm the cause.
+
+If the user is actively working (not idle) when disconnected, the
+cause is more likely a network keepalive or client-side issue; ask the
+user to test from a different network or device to isolate.
+
+======================================================================
+NOTE ON AI ASSISTANCE
+======================================================================
+This triage document was drafted with AI assistance and reviewed by the
+analyst before use. No real user data, credentials, or internal system
+details were used in its production.
+======================================================================
