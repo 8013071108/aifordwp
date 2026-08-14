@@ -1,7 +1,7 @@
-Subject: Floor 6 Legal Copilot access concern - escalation update
+Subject: Floor 6 Legal Copilot security signal - escalation update
 
 Incident Summary
-A Floor 6 Legal user reported that Microsoft 365 Copilot surfaced a client matter she believed she had never had access to. The report is being handled as a potential access-boundary and data exposure concern.
+A Floor 6 Legal user reported that Microsoft 365 Copilot surfaced a client matter she believed she had never had access to. The report is being handled as a security signal and as a potential access-boundary and data exposure concern.
 
 Business Risk
 This is a high-priority Legal information risk because the report involves client matter content. The key risk is whether Copilot surfaced content outside the user’s actual permissions or whether the user already had a valid access path.
@@ -16,7 +16,7 @@ What Investigation Ruled Out
 We have not confirmed a Copilot product defect. We have also not confirmed that the Friday document management app rollout caused the issue. No final evidence currently proves unauthorized access, and no conclusion should be drawn until permissions, audit logs, and content access paths are fully verified.
 
 Current Status
-The investigation is incomplete and remains open. The incident is still being treated as a potential access-boundary concern with high business sensitivity.
+The investigation is incomplete and remains open. The incident is being treated as a security signal with high business sensitivity while the access review is completed.
 
 Containment Actions
 The incident is being handled as high risk while the team reviews SharePoint/OneDrive permissions, Microsoft 365 audit records, Purview records, and the exact Copilot response context.

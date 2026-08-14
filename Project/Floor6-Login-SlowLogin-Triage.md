@@ -25,6 +25,8 @@ Floor 6 Legal has a sign-in problem after the recent Windows 11 migration and In
 ## Likely Category
 Identity / profile load / endpoint startup delay, to confirm.
 
+Reasoning: Multiple users are affected after a recent Windows 11 migration and Intune enrolment, and the reported symptoms are login failure or unusually slow sign-in rather than a single isolated app error.
+
 ## Evidence to Collect
 Check these first:
 - Entra ID sign-in logs for affected users and devices

@@ -1,7 +1,7 @@
 # Floor 6 Copilot Access Concern Triage
 
 ## Summary (one line)
-One paralegal on Floor 6 reports that Microsoft 365 Copilot surfaced a client matter she believes she has never had access to, which must be treated as a high-priority access and data exposure concern until confirmed otherwise.
+One paralegal on Floor 6 reports that Microsoft 365 Copilot surfaced a client matter she believes she has never had access to; this must be treated as a high-priority security signal and access-boundary concern until confirmed otherwise.
 
 ## Impact (who/how many/business urgency)
 - Who: One paralegal reported the issue so far.
@@ -13,7 +13,7 @@ One paralegal on Floor 6 reports that Microsoft 365 Copilot surfaced a client ma
 - Floor 6 was recently migrated to Windows 11 and enrolled into Intune.
 - A new document management app was rolled out on Friday afternoon.
 - One paralegal says Microsoft 365 Copilot pulled up a client matter she believes she has never had access to.
-- No proof yet that this is a Copilot bug; permissions, access boundaries, indexing, sharing, and sensitivity label evidence must be checked first.
+- No proof yet of a Copilot product fault; permissions, access boundaries, indexing, sharing, and sensitivity label evidence must be checked first because this is being treated as a security signal.
 
 ## Missing Information to Gather
 - Exact client matter name and the exact Copilot prompt/response, to confirm.
@@ -26,6 +26,8 @@ One paralegal on Floor 6 reports that Microsoft 365 Copilot surfaced a client ma
 
 ## Likely Category
 Permissions / access boundary / search-index / sensitivity-label exposure issue, to confirm.
+
+Reasoning: The reported symptom is unexpected content being surfaced to a Legal user, and no permission, audit, sharing, or source-access review has yet been completed to prove whether the issue is expected access, oversharing, or another access-boundary problem.
 
 ## Evidence to Collect
 Check these first:

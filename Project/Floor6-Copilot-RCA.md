@@ -1,7 +1,7 @@
 # Floor 6 Copilot Access Boundary RCA
 
 ## Incident Summary
-A Legal user on Floor 6 reported that Microsoft 365 Copilot surfaced a client matter they believed they had never had access to. The report was treated as a potential access-boundary and data exposure concern.
+A Legal user on Floor 6 reported that Microsoft 365 Copilot surfaced a client matter they believed they had never had access to. The report was treated as a security signal and a potential access-boundary and data exposure concern.
 
 ## Business Impact
 - Who: One paralegal reported the issue so far.
@@ -49,6 +49,9 @@ The provided evidence does not confirm whether the issue was caused by a permiss
 - Confirmed exposure scope: to confirm.
 - Confirmed unauthorized access: to confirm.
 
+Operational classification:
+- This incident is classified as a security signal pending completion of permissions, audit, and source-access review.
+
 ## Resolution Implemented
 To confirm.
 
@@ -84,5 +87,5 @@ Verification evidence was not included in the prompt. Before closure, confirm wh
 
 ## Lessons Learned
 - User perception and actual permission state are not the same and must be checked independently.
-- Copilot incidents involving Legal content should be treated as access-risk events until permissions and audit evidence prove otherwise.
+- Copilot incidents involving Legal content should be treated as security signals and access-risk events until permissions and audit evidence prove otherwise.
 - A nearby migration or app rollout may be relevant, but it should not be treated as root cause without supporting evidence.

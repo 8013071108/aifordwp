@@ -25,6 +25,8 @@ Someone on Floor 6 Legal reports that desktop shortcuts vanished after the recen
 ## Likely Category
 User profile / desktop state / Intune configuration, to confirm.
 
+Reasoning: The report is limited to missing desktop shortcuts after recent migration and enrolment activity, and the current facts do not yet prove deletion, only a change in what the user sees on the desktop.
+
 ## Evidence to Collect
 Check these first:
 - Windows user profile status
